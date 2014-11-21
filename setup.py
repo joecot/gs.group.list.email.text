@@ -20,7 +20,8 @@ from version import get_version
 
 version = get_version()
 
-requires = ['zope.viewlet']
+requires = ['setuptools', 
+            'zope.viewlet']
 
 with codecs.open('README.rst', encoding='utf-8') as f:
     long_description = f.read()
