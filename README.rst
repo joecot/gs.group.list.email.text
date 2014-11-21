@@ -126,8 +126,10 @@ Resources
              <https://github.com/groupserver/gs.group.list.sender>
 
 .. [#picture] If “a picture can speak a thousand words” then
-              represent that concept with a picture. Sent your
-              attempts to <mpj17@onlinegroups.net>.
+              represent that concept with a picture. Send
+              attempts that are less than 2K (the size of a
+              thousand words, compressed) to
+              <mpj17@onlinegroups.net>.
 
 .. _GroupServer: http://groupserver.org/
 .. _GroupServer.org: http://groupserver.org/
