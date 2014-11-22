@@ -16,8 +16,9 @@
 
   <include package="zope.viewlet" file="meta.zcml" />
 
+  <!--The overall viewlet manager for the entire message-->
   <browser:viewletManager
-    name="groupserver.EmailTextM"
+    name="groupserver.EmailTextMessage"
     for="gs.group.base.interfaces.IGSGroupMarker"
     provides=".interfaces.ITextMessage"
     class="gs.viewlet.manager.WeightOrderedViewletManager"
@@ -25,11 +26,62 @@
     permission="zope2.View" />
 
 
-  <!--Prolog-->
+  <!--========-->
+  <!--Prologue-->
+  <!--========-->
+
+   <browser:viewlet
+    name="gs-group-list-email-text-prologue"
+    manager=".interfaces.ITextMessage"
+    class="gs.group.base.GroupViewlet"
+    template="browser/templates/prologue.pt"
+    permission="zope2.View"
+    weight="10"
+    title="Prologue" />
   <browser:viewletManager
     name="groupserver.EmailTextPrologue"
     for="gs.group.base.interfaces.IGSGroupMarker"
     provides=".interfaces.IPrologue"
+    class="gs.viewlet.manager.WeightOrderedViewletManager"
+    template="browser/templates/simplemanager.pt"
+    permission="zope2.View" />
+
+  <!--====-->
+  <!--Body-->
+  <!--====-->
+
+ <browser:viewlet
+    name="gs-group-list-email-text-body"
+    manager=".interfaces.ITextMessage"
+    class="gs.group.base.GroupViewlet"
+    template="browser/templates/body.pt"
+    permission="zope2.View"
+    weight="20"
+    title="Body" />
+  <browser:viewletManager
+    name="groupserver.EmailTextBody"
+    for="gs.group.base.interfaces.IGSGroupMarker"
+    provides=".interfaces.IBody"
+    class="gs.viewlet.manager.WeightOrderedViewletManager"
+    template="browser/templates/simplemanager.pt"
+    permission="zope2.View" />
+
+  <!--========-->
+  <!--Appendix-->
+  <!--========-->
+
+  <browser:viewlet
+    name="gs-group-list-email-text-appendix"
+    manager=".interfaces.ITextMessage"
+    class="gs.group.base.GroupViewlet"
+    template="browser/templates/appendix.pt"
+    permission="zope2.View"
+    weight="30"
+    title="Appendix" />
+  <browser:viewletManager
+    name="groupserver.EmailTextAppendix"
+    for="gs.group.base.interfaces.IGSGroupMarker"
+    provides=".interfaces.IAppendix"
     class="gs.viewlet.manager.WeightOrderedViewletManager"
     template="browser/templates/simplemanager.pt"
     permission="zope2.View" />
