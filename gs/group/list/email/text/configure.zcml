@@ -46,6 +46,23 @@
     template="browser/templates/simplemanager.pt"
     permission="zope2.View" />
 
+   <browser:viewlet
+    name="gs-group-list-email-text-prologue-file"
+    manager=".interfaces.IPrologue"
+    class="gs.group.base.GroupViewlet"
+    template="browser/templates/file-notice.pt"
+    permission="zope2.View"
+    weight="10"
+    title="File notice" />
+   <browser:viewlet
+    name="gs-group-list-email-text-prologue-files"
+    manager=".interfaces.IPrologue"
+    class="gs.group.base.GroupViewlet"
+    template="browser/templates/files-notice.pt"
+    permission="zope2.View"
+    weight="10"
+    title="Files notice" />
+
   <!--====-->
   <!--Body-->
   <!--====-->
@@ -66,6 +83,15 @@
     template="browser/templates/simplemanager.pt"
     permission="zope2.View" />
 
+   <browser:viewlet
+    name="gs-group-list-email-text-body-plain"
+    manager=".interfaces.IBody"
+    class="gs.group.base.GroupViewlet"
+    template="browser/templates/plain-body.pt"
+    permission="zope2.View"
+    weight="10"
+    title="Plain body" />
+
   <!--========-->
   <!--Appendix-->
   <!--========-->
@@ -85,5 +111,32 @@
     class="gs.viewlet.manager.WeightOrderedViewletManager"
     template="browser/templates/simplemanager.pt"
     permission="zope2.View" />
+
+   <browser:viewlet
+    name="gs-group-list-email-text-appendix-files"
+    manager=".interfaces.IAppendix"
+    class="gs.group.base.GroupViewlet"
+    template="browser/templates/files.pt"
+    permission="zope2.View"
+    weight="10"
+    title="Files" />
+
+   <browser:viewlet
+    name="gs-group-list-email-text-prologue-files"
+    manager=".interfaces.IAppendix"
+    class="gs.group.base.GroupViewlet"
+    template="browser/templates/files.pt"
+    permission="zope2.View"
+    weight="10"
+    title="Files" />
+
+   <browser:viewlet
+    name="gs-group-list-email-text-prologue-footer"
+    manager=".interfaces.IAppendix"
+    class="gs.group.base.GroupViewlet"
+    template="browser/templates/footer.pt"
+    permission="zope2.View"
+    weight="20"
+    title="Footer" />
 
 </configure>
