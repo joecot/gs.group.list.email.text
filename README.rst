@@ -63,13 +63,18 @@ The prologue of a message appears at the top of the message body,
 but before the body_ proper. The *viewlet manager*
 ``groupserver.EmailTextPrologue``
 (``gs.group.list.email.text.interfaces.IPrologue``) is normally
-filled by the *File notice* viewlet.
+filled by the *File notice* viewlets.
 
-The *File notice* viewlet
-(``gs-group-list-email-text-prologue-files``) provides a short
-notice that there are files listed in the appendix of a
-message. It does this because the bottom-quoting can make it hard
-to see the appendix_.
+The *File notice* viewlets state that there is one or more files
+listed in the appendix_:
+
+* One (``gs-group-list-email-text-prologue-file``) provides a
+  short notice that there is *a* file listed in the appendix of a
+  message, 
+
+* The other (``gs-group-list-email-text-prologue-files``)
+  provides a short notice that there are *multiple* files listed
+  in the appendix of a message.
 
 Body
 ----

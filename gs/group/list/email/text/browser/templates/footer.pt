@@ -1,0 +1,7 @@
+<tal:block
+  xmlns:tal="http://xml.zope.org/namespaces/tal">--
+
+View topic <tal:block replace="view/topicLink">http://groups.example.com/r/topic/2wzK5sNxM52OPbGlwSrH82</tal:block>
+
+Leave group <tal:block replace="view/leaveLink">mailto:group@groups.example.com?Subject=unsubscribe</tal:block>
+</tal:block>

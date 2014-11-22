@@ -1,0 +1,3 @@
+<tal:block
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  tal:replace="view/body" />
