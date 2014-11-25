@@ -17,6 +17,12 @@
   <include package="zope.viewlet" file="meta.zcml" />
 
   <!--The overall viewlet manager for the entire message-->
+  <browser:page
+    name="gs-group-list-email-text-message.txt"
+    for="gs.group.base.interfaces.IGSGroupMarker"
+    class=".message.TextMessage"
+    template="browser/templates/page.pt"
+    permission="zope2.View" />
   <browser:viewletManager
     name="groupserver.EmailTextMessage"
     for="gs.group.base.interfaces.IGSGroupMarker"
@@ -24,7 +30,6 @@
     class="gs.viewlet.manager.WeightOrderedViewletManager"
     template="browser/templates/simplemanager.pt"
     permission="zope2.View" />
-
 
   <!--========-->
   <!--Prologue-->
@@ -49,7 +54,7 @@
    <browser:viewlet
     name="gs-group-list-email-text-prologue-file"
     manager=".interfaces.IPrologue"
-    class="gs.group.base.GroupViewlet"
+    class=".files.FileNotice"
     template="browser/templates/file-notice.pt"
     permission="zope2.View"
     weight="10"
@@ -57,7 +62,7 @@
    <browser:viewlet
     name="gs-group-list-email-text-prologue-files"
     manager=".interfaces.IPrologue"
-    class="gs.group.base.GroupViewlet"
+    class=".files.FilesNotice"
     template="browser/templates/files-notice.pt"
     permission="zope2.View"
     weight="10"
@@ -86,7 +91,7 @@
    <browser:viewlet
     name="gs-group-list-email-text-body-plain"
     manager=".interfaces.IBody"
-    class="gs.group.base.GroupViewlet"
+    class=".body.PlainBody"
     template="browser/templates/plain-body.pt"
     permission="zope2.View"
     weight="10"
@@ -124,7 +129,7 @@
    <browser:viewlet
     name="gs-group-list-email-text-prologue-files"
     manager=".interfaces.IAppendix"
-    class="gs.group.base.GroupViewlet"
+    class=".files.Files"
     template="browser/templates/files.pt"
     permission="zope2.View"
     weight="10"
@@ -133,7 +138,7 @@
    <browser:viewlet
     name="gs-group-list-email-text-prologue-footer"
     manager=".interfaces.IAppendix"
-    class="gs.group.base.GroupViewlet"
+    class=".footer.Footer"
     template="browser/templates/footer.pt"
     permission="zope2.View"
     weight="20"

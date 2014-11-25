@@ -28,33 +28,35 @@ of the message is currently dropped.
 Message
 =======
 
-The text version of a message is provided by the
-``groupserver.EmailTextMessage`` viewlet manager [#viewlet]_ —
-which provides the
+The text version of a message is provided by the page
+``gs-group-list-email-text-message.txt``, in the group
+context. The post identifier is passed in as an *option*.
+
+The message just contains the ``groupserver.EmailTextMessage``
+viewlet manager [#viewlet]_ — which provides the
 ``gs.group.list.email.text.interfaces.ITextMessage`` interface.
+By default, three viewlets are provided for the message. Each
+viewlet contains further viewlet manager, effectively dividing
+the message in three: the prologue_, the body_ and the
+appendix_::
 
-By default, the message is divided in three: the prologue_, the
-body_ and the appendix_::
-
-
-  ┌Text message─────────────────────────────────────┐
-  │gs.group.list.email.text.interfaces.ITextMessage │
-  │                                                 │
-  │┌Prologue───────────────────────────────────────┐│
-  ││gs.group.list.email.text.interfaces.IPrologue  ││
-  │└───────────────────────────────────────────────┘│
-  │                                                 │
-  │┌Body───────────────────────────────────────────┐│
-  ││gs.group.list.email.text.interfaces.IBody      ││
-  │└───────────────────────────────────────────────┘│
-  │                                                 │
-  │┌Appendix───────────────────────────────────────┐│
-  ││gs.group.list.email.text.interfaces.IAppendix  ││
-  │└───────────────────────────────────────────────┘│
-  └─────────────────────────────────────────────────┘
-
-The three standard sections of a message are provided by
-viewlets, which are viewlet managers in their own right.
+  ┌Text message───────────────────────────────────────┐
+  │┌Text message viewlet manager─────────────────────┐│
+  ││gs.group.list.email.text.interfaces.ITextMessage ││
+  ││                                                 ││
+  ││┌Prologue viewlet manager───────────────────────┐││
+  │││gs.group.list.email.text.interfaces.IPrologue  │││
+  ││└───────────────────────────────────────────────┘││
+  ││                                                 ││
+  ││┌Body viewlet manager───────────────────────────┐││
+  │││gs.group.list.email.text.interfaces.IBody      │││
+  ││└───────────────────────────────────────────────┘││
+  ││                                                 ││
+  ││┌Appendix viewlet manager───────────────────────┐││
+  │││gs.group.list.email.text.interfaces.IAppendix  │││
+  ││└───────────────────────────────────────────────┘││
+  │└─────────────────────────────────────────────────┘│
+  └───────────────────────────────────────────────────┘
 
 Prologue
 --------
