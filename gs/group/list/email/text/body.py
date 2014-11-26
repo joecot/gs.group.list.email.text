@@ -15,9 +15,10 @@
 from __future__ import absolute_import, unicode_literals
 from zope.cachedescriptors.property import Lazy
 from gs.group.base import GroupViewlet
+from .viewlet import EmailMessageViewlet
 
 
-class PlainBody(GroupViewlet):
+class PlainBody(EmailMessageViewlet):
     "The viewlet for the plain ol' body"
     @Lazy
     def body(self):

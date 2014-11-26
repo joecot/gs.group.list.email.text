@@ -14,10 +14,10 @@
 ############################################################################
 from __future__ import absolute_import, unicode_literals
 from zope.cachedescriptors.property import Lazy
-from gs.group.base import GroupViewlet
+from .viewlet import EmailMessageViewlet
 
 
-class FilesViewlet(GroupViewlet):
+class FilesViewlet(EmailMessageViewlet):
     'Base class for the three file viewlets'
 
     @Lazy

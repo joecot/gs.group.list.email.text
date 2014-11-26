@@ -14,23 +14,27 @@
 ############################################################################
 from __future__ import absolute_import, unicode_literals
 from zope.cachedescriptors.property import Lazy
-from .viewlet import EmailMessageViewlet
+from gs.group.base import GroupViewlet
+from Products.GSGroup.interfaces import (IGSMailingListInfo)
 
 
-class Footer(EmailMessageViewlet):
+# FIXME: I am unsure why I cannot get the acquisition to work, so the
+# GroupViewlet.groupInfo and GroupInfo.siteInfo properties fail to get
+# the site an group. This is a hack to get around that issue.
+
+class EmailMessageViewlet(GroupViewlet):
 
     @Lazy
-    def topicLink(self):
-        'The link to the topic on the web'
-        r = '{siteUrl}/r/topic/{postId}'
-        retval = r.format(siteUrl=self.context.groupInfo.siteInfo.url,
-                          postId=self.context.postId)
+    def groupInfo(self):
+        retval = self.context.groupInfo
         return retval
 
     @Lazy
-    def leaveLink(self):
-        '''The leave link. Some cut-n-paste software engineering from
-``gs.group.list.sender.headers.simpleadd.ListUnsubscribe``'''
-        emailAddr = self.listInfo.get_property('mailto')
-        retval = 'mailto:{0}?Subject=Unsubscribe'.format(emailAddr)
+    def siteInfo(self):
+        retval = self.groupInfo.siteInfo
+        return retval
+
+    @Lazy
+    def listInfo(self):
+        retval = IGSMailingListInfo(self.groupInfo.groupObj)
         return retval
