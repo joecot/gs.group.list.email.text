@@ -1,7 +1,9 @@
 <tal:block
-  xmlns:tal="http://xml.zope.org/namespaces/tal">--
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  define="n view/n">
+― <tal:block condition="python:n==1">File</tal:block><tal:block
+  condition="python:n!=1">Files</tal:block> ―
+
   <tal:block repeat="file view/files"><tal:block content="structure file/name"/>  (<tal:block content="structure file/size"/>)
     <tal:block content="structure file/url"/>
-
-  </tal:block>
-<tal:bock>
+</tal:block></tal:block>

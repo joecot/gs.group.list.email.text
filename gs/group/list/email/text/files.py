@@ -19,9 +19,10 @@ from gs.group.base import GroupViewlet
 
 class FilesViewlet(GroupViewlet):
     'Base class for the three file viewlets'
+
     @Lazy
     def files(self):
-        retval = self.view.post.files
+        retval = self.manager.__parent__.manager.__parent__.post.files
         return retval
 
     @Lazy
@@ -50,5 +51,5 @@ class Files(FilesViewlet):
     'The list of files in the appendix'
     @Lazy
     def show(self):
-        retval = len(self.n) > 0
+        retval = self.n > 0
         return retval

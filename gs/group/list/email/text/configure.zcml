@@ -118,15 +118,6 @@
     permission="zope2.View" />
 
    <browser:viewlet
-    name="gs-group-list-email-text-appendix-files"
-    manager=".interfaces.IAppendix"
-    class="gs.group.base.GroupViewlet"
-    template="browser/templates/files.pt"
-    permission="zope2.View"
-    weight="10"
-    title="Files" />
-
-   <browser:viewlet
     name="gs-group-list-email-text-prologue-files"
     manager=".interfaces.IAppendix"
     class=".files.Files"

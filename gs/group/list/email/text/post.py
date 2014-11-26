@@ -14,7 +14,7 @@
 ############################################################################
 from __future__ import (absolute_import, division, unicode_literals)
 from zope.cachedescriptors.property import Lazy
-from Products.XWFMailingListManager.queries import MessageQuery
+from Products.XWFMailingListManager import MessageQuery
 
 
 class Post(object):
@@ -26,14 +26,20 @@ class Post(object):
         self.postId = postId
 
     @Lazy
-    def post(self):
-        query = MessageQuery()
-        retval = query.post(self.postId)
-        return retval
-
-    @Lazy
     def id(self):
         return self.postId
+
+    @Lazy
+    def post(self):
+        query = MessageQuery(self.groupInfo.groupObj)
+        retval = query.post(self.postId)
+        if ((retval['group_id'] != self.groupInfo.id)
+           or (retval['site_id'] != self.groupInfo.siteInfo.id)):
+                m = 'Post "{0}" not in the group {1} on {2}'
+                msg = m.format(self.postId, self.grouInfo.id,
+                               self.groupInfo.siteInfo.id)
+                raise ValueError(msg)
+        return retval
 
     @Lazy
     def body(self):
@@ -43,7 +49,7 @@ class Post(object):
     @Lazy
     def files(self):
         retval = [File.from_query_dict(self.groupInfo, d)
-                  for d in self.post['files_meatadata']]
+                  for d in self.post['files_metadata']]
         return retval
 
 
@@ -53,8 +59,8 @@ class File(object):
         self.name = name
         self.size = '{0:.1f}kb'.format(rawSize / 1024.0)
         self.mimeType = mimeType
-        u = '{0}/files/f/{1}/{2}'
-        self.url = u.format(groupInfo.url, fileId, name)
+        u = '{0}/r/file/{1}/'
+        self.url = u.format(groupInfo.siteInfo.url, fileId)
 
     @classmethod
     def from_query_dict(cls, groupInfo, d):

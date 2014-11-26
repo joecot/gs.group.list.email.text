@@ -15,7 +15,16 @@
 from __future__ import absolute_import, unicode_literals
 from mock import patch, MagicMock
 from unittest import TestCase
+from gs.group.list.email.text.message import TextMessage
 
 
 class TestTextMessage(TestCase):
     'Test the TextMessage class'
+
+    def test_call(self):
+        group = MagicMock()
+        request = MagicMock()
+        t = TextMessage(group, request)
+
+        r = t(foo='bar')
+        self.assertTrue(r)

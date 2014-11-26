@@ -22,15 +22,15 @@ class Footer(GroupViewlet):
 
     @Lazy
     def listInfo(self):
-        retval = IGSMailingListInfo(self.group)
+        retval = IGSMailingListInfo(self.groupInfo.groupObj)
         return retval
 
     @Lazy
     def topicLink(self):
         'The link to the topic on the web'
         r = '{siteUrl}/r/topic/{postId}'
-        retval = r.format(siteUrl=self.siteInfo.url,
-                          postId=self.view.post.id)
+        postId = self.manager.__parent__.manager.__parent__.post.postId
+        retval = r.format(siteUrl=self.siteInfo.url, postId=postId)
         return retval
 
     @Lazy

@@ -1,3 +1,4 @@
 <tal:block
   xmlns:tal="http://xml.zope.org/namespaces/tal"
-  tal:content="structure groupserver.EmailTextPrologue" />
+  tal:define="post view/post"
+  tal:content="structure provider:groupserver.EmailTextMessage" />

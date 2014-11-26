@@ -21,5 +21,5 @@ class PlainBody(GroupViewlet):
     "The viewlet for the plain ol' body"
     @Lazy
     def body(self):
-        retval = self.view.post.body
+        retval = self.manager.__parent__.manager.__parent__.post.body
         return retval
