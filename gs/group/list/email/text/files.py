@@ -22,7 +22,7 @@ class FilesViewlet(GroupViewlet):
 
     @Lazy
     def files(self):
-        retval = self.manager.__parent__.manager.__parent__.post.files
+        retval = self.context.files
         return retval
 
     @Lazy

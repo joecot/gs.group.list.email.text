@@ -13,6 +13,7 @@
 #
 ############################################################################
 from __future__ import absolute_import, unicode_literals
+from zope.interface import Interface
 from zope.viewlet.interfaces import IViewletManager
 
 
@@ -30,3 +31,7 @@ class IBody(IViewletManager):
 
 class IAppendix(IViewletManager):
     'The viewlet manger for the appendix of the message'
+
+
+class IPost(Interface):
+    'A marker interface for a post'

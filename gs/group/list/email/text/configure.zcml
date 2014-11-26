@@ -16,16 +16,31 @@
 
   <include package="zope.viewlet" file="meta.zcml" />
 
-  <!--The overall viewlet manager for the entire message-->
+  <!--TODO: Move to gs.group.list.email.base -->
+   <browser:page
+    name="gs-group-list-email"
+    for="Products.XWFMailingListManager.interfaces.IGSMessagesFolder"
+    class=".message.Message"
+    permission="zope2.View" />
+  <class class=".message.Message">
+    <implements interface="zope.publisher.interfaces.IPublishTraverse"/>
+  </class>
+  <!--The Post-class provides the IPost interface -->
+  <class class=".post.Post">
+    <implements interface=".interfaces.IPost"/>
+    <implements interface="zope.location.interfaces.IContained"/>
+  </class>
+
   <browser:page
-    name="gs-group-list-email-text-message.txt"
-    for="gs.group.base.interfaces.IGSGroupMarker"
+    name="text"
+    for=".interfaces.IPost"
     class=".message.TextMessage"
     template="browser/templates/page.pt"
     permission="zope2.View" />
-  <browser:viewletManager
+
+   <browser:viewletManager
     name="groupserver.EmailTextMessage"
-    for="gs.group.base.interfaces.IGSGroupMarker"
+    for=".interfaces.IPost"
     provides=".interfaces.ITextMessage"
     class="gs.viewlet.manager.WeightOrderedViewletManager"
     template="browser/templates/simplemanager.pt"
@@ -37,6 +52,7 @@
 
    <browser:viewlet
     name="gs-group-list-email-text-prologue"
+    for=".interfaces.IPost"
     manager=".interfaces.ITextMessage"
     class="gs.group.base.GroupViewlet"
     template="browser/templates/prologue.pt"
@@ -45,7 +61,7 @@
     title="Prologue" />
   <browser:viewletManager
     name="groupserver.EmailTextPrologue"
-    for="gs.group.base.interfaces.IGSGroupMarker"
+    for=".interfaces.IPost"
     provides=".interfaces.IPrologue"
     class="gs.viewlet.manager.WeightOrderedViewletManager"
     template="browser/templates/simplemanager.pt"
@@ -53,6 +69,7 @@
 
    <browser:viewlet
     name="gs-group-list-email-text-prologue-file"
+    for=".interfaces.IPost"
     manager=".interfaces.IPrologue"
     class=".files.FileNotice"
     template="browser/templates/file-notice.pt"
@@ -61,6 +78,7 @@
     title="File notice" />
    <browser:viewlet
     name="gs-group-list-email-text-prologue-files"
+    for=".interfaces.IPost"
     manager=".interfaces.IPrologue"
     class=".files.FilesNotice"
     template="browser/templates/files-notice.pt"
@@ -72,8 +90,9 @@
   <!--Body-->
   <!--====-->
 
- <browser:viewlet
+  <browser:viewlet
     name="gs-group-list-email-text-body"
+    for=".interfaces.IPost"
     manager=".interfaces.ITextMessage"
     class="gs.group.base.GroupViewlet"
     template="browser/templates/body.pt"
@@ -82,7 +101,7 @@
     title="Body" />
   <browser:viewletManager
     name="groupserver.EmailTextBody"
-    for="gs.group.base.interfaces.IGSGroupMarker"
+    for=".interfaces.IPost"
     provides=".interfaces.IBody"
     class="gs.viewlet.manager.WeightOrderedViewletManager"
     template="browser/templates/simplemanager.pt"
@@ -90,6 +109,7 @@
 
    <browser:viewlet
     name="gs-group-list-email-text-body-plain"
+    for=".interfaces.IPost"
     manager=".interfaces.IBody"
     class=".body.PlainBody"
     template="browser/templates/plain-body.pt"
@@ -103,6 +123,7 @@
 
   <browser:viewlet
     name="gs-group-list-email-text-appendix"
+    for=".interfaces.IPost"
     manager=".interfaces.ITextMessage"
     class="gs.group.base.GroupViewlet"
     template="browser/templates/appendix.pt"
@@ -111,7 +132,7 @@
     title="Appendix" />
   <browser:viewletManager
     name="groupserver.EmailTextAppendix"
-    for="gs.group.base.interfaces.IGSGroupMarker"
+    for=".interfaces.IPost"
     provides=".interfaces.IAppendix"
     class="gs.viewlet.manager.WeightOrderedViewletManager"
     template="browser/templates/simplemanager.pt"
@@ -119,6 +140,7 @@
 
    <browser:viewlet
     name="gs-group-list-email-text-prologue-files"
+    for=".interfaces.IPost"
     manager=".interfaces.IAppendix"
     class=".files.Files"
     template="browser/templates/files.pt"
@@ -128,6 +150,7 @@
 
    <browser:viewlet
     name="gs-group-list-email-text-prologue-footer"
+    for=".interfaces.IPost"
     manager=".interfaces.IAppendix"
     class=".footer.Footer"
     template="browser/templates/footer.pt"

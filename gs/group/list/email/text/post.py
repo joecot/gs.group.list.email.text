@@ -19,11 +19,12 @@ from Products.XWFMailingListManager import MessageQuery
 
 class Post(object):
 
-    def __init__(self, groupInfo, postId):
+    def __init__(self, messages, groupInfo, postId):
         if not postId:
             raise ValueError('Post identifier required')
+        self.context = self.messages = self.__parent__ = messages
         self.groupInfo = groupInfo
-        self.postId = postId
+        self.postId = self.__name__ = postId
 
     @Lazy
     def id(self):

@@ -19,6 +19,15 @@ from Products.GSGroup.interfaces import (IGSMailingListInfo)
 
 
 class Footer(GroupViewlet):
+    @Lazy
+    def groupInfo(self):
+        retval = self.context.groupInfo
+        return retval
+
+    @Lazy
+    def siteInfo(self):
+        retval = self.groupInfo.siteInfo
+        return retval
 
     @Lazy
     def listInfo(self):
@@ -29,8 +38,8 @@ class Footer(GroupViewlet):
     def topicLink(self):
         'The link to the topic on the web'
         r = '{siteUrl}/r/topic/{postId}'
-        postId = self.manager.__parent__.manager.__parent__.post.postId
-        retval = r.format(siteUrl=self.siteInfo.url, postId=postId)
+        retval = r.format(siteUrl=self.context.groupInfo.siteInfo.url,
+                          postId=self.context.postId)
         return retval
 
     @Lazy
