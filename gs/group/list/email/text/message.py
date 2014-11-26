@@ -33,7 +33,7 @@ class Message(GroupEmail):
 
     def __call__(self):
         tsp = self.traverse_subpath
-        name = tsp[-1] if tsp > 1 else 'text'
+        name = tsp[1] if len(tsp) > 1 else 'text'
         page = getMultiAdapter((self.post, self.request),
                                name=name)
         retval = page()
