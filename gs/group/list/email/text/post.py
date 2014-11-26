@@ -57,7 +57,7 @@ class File(object):
 
     def __init__(self, groupInfo, fileId, name, rawSize, mimeType):
         self.name = name
-        self.size = '{0:.1f}kb'.format(rawSize / 1024.0)
+        self.size = self.format_size(rawSize)
         self.mimeType = mimeType
         u = '{0}/r/file/{1}/'
         self.url = u.format(groupInfo.siteInfo.url, fileId)
@@ -66,4 +66,20 @@ class File(object):
     def from_query_dict(cls, groupInfo, d):
         retval = cls(groupInfo, d['file_id'], d['file_name'],
                      d['file_size'], d['mime_type'])
+        return retval
+
+    @staticmethod
+    def format_size(rawSize):
+        if rawSize < 10**3:
+            retval = '{0}b'.format(rawSize)
+        elif 10**3 <= rawSize < (5 * 10**3):
+            retval = '{0:.1f}kb'.format((rawSize) / 10**3)
+        elif (5 * 10**3) <= rawSize < 10**6:
+            retval = '{0:.0f}kb'.format(rawSize / 10**3)
+        elif 10**6 <= rawSize < 10**9:
+            retval = '{0:.0f}mb'.format(rawSize / 10**6)
+        elif 10**9 <= rawSize < 10**12:
+            retval = '{0:.0f}gb'.format(rawSize / 10**9)
+        else:
+            retval = 'very big'
         return retval

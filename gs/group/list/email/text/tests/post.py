@@ -15,7 +15,7 @@
 from __future__ import absolute_import, unicode_literals
 from mock import patch, MagicMock
 from unittest import TestCase
-from gs.group.list.email.text.post import Post
+from gs.group.list.email.text.post import Post, File
 
 
 class TestPost(TestCase):
@@ -43,3 +43,22 @@ class TestPost(TestCase):
         for f in r:
             self.assertIn(u, f.url)
             self.assertIn('kb', f.size)
+
+    def test_format_size(self):
+        gi = MagicMock()
+        p = File(gi, 'faux', 'faux.dat', 0, 'application/octet-stream')
+
+        r = p.format_size(37)
+        self.assertEqual('37b', r)
+
+        r = p.format_size(4571)
+        self.assertEqual('4.6kb', r)  # Rounding
+
+        r = p.format_size(546154)
+        self.assertEqual('546kb', r)
+
+        r = p.format_size(298948120)
+        self.assertEqual('299mb', r)  # Rounding
+
+        r = p.format_size(3980645255)
+        self.assertEqual('4gb', r)  # Rounding
