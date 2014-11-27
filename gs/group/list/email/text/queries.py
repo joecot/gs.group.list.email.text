@@ -23,21 +23,35 @@ class MessageQuery(object):
         self.postTable = getTable('post')
         self.fileTable = getTable('file')
 
-    def post(self, post_id):
-        """ Retrieve a particular post.
+    def post(self, postId):
+        """Retrieve a post
 
-            Returns:
-                {'post_id': ID, 'group_id': ID, 'site_id': ID,
-                 'subject': String,
-                 'date': Date, 'author_id': ID,
-                 'body': Text, 'hidden': DateOrNull,
-                 'files_metadata': [Metadata]
-                 }
-             or
-                None"""
+:param str post_id: The identifier of a post
+:returns: The post for the ID, or ``None``
+:rtype: dict
+
+The dictionary representing the post contains the following
+
+==================  ========  ==========================
+Key                 Type      Note
+==================  ========  ==========================
+``post_id``         str       The post identifier
+``group_id``        str       The group identifier
+``site_id'          str       The site identifier
+``subject``         str       The subject (topic title)
+``date``            DateTime  The date the post was made
+``author_id``       str       The author identifier
+``body``            str       The body of the post
+``hidden``          DateTime  Set if the post is hidden
+``files_metadata``  ``list``  The list of attached files
+==================  ========  ==========================
+"""
+        if not postId:
+            raise ValueError('postId must be set')
+
         pt = self.postTable
         statement = pt.select()
-        statement.append_whereclause(pt.c.post_id == post_id)
+        statement.append_whereclause(pt.c.post_id == postId)
 
         session = getSession()
         r = session.execute(statement)
@@ -46,19 +60,16 @@ class MessageQuery(object):
             assert r.rowcount == 1, "Posts should always be unique"
             row = r.fetchone()
             retval = {k: v for k, v in list(row.items())}
-            retval['files_metadata'] = self.files_metadata(row['post_id'])
+            fm = []
+            if retval['has_attachments']:
+                fm = self.files_metadata(row['post_id'])
+            retval['files_metadata'] = fm
+
+        assert postId == retval['post_id'], 'post_id missmatch'
         return retval
 
     def files_metadata(self, postId):
-        """ Retrieve the metadata of all files associated with this post.
-
-            Returns:
-                {'file_id': ID, 'mime_type': String,
-                 'file_name': String, 'file_size': Int}
-             or
-                []
-
-        """
+        """Retrieve the metadata of all files associated with this post."""
         ft = self.fileTable
         statement = ft.select()
         statement.append_whereclause(ft.c.post_id == postId)
