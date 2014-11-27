@@ -1,9 +1,10 @@
 Changelog
 =========
 
-1.0.0 (2014-12-xx)
+1.0.0 (2014-11-27)
 ------------------
 
-* Initial version, based on the code in ``XWFMailingListManager``
+* Initial version, inspired by code from the
+  ``XWFMailingListManager`` product
 
 ..  LocalWords:  Changelog GitHub

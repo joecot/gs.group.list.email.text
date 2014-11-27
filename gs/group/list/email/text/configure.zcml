@@ -20,9 +20,9 @@
    <browser:page
     name="gs-group-list-email"
     for="Products.XWFMailingListManager.interfaces.IGSMessagesFolder"
-    class=".message.Message"
+    class=".message.MessageTraversal"
     permission="zope2.View" />
-  <class class=".message.Message">
+  <class class=".message.MessageTraversal">
     <implements interface="zope.publisher.interfaces.IPublishTraverse"/>
   </class>
   <!--The Post-class provides the IPost interface -->
@@ -31,13 +31,14 @@
     <implements interface="zope.location.interfaces.IContained"/>
   </class>
 
+  <!--The page itself-->
   <browser:page
     name="text"
     for=".interfaces.IPost"
     class=".message.TextMessage"
     template="browser/templates/page.pt"
     permission="zope2.View" />
-
+  <!--The viewlet manager inside the page-->
    <browser:viewletManager
     name="groupserver.EmailTextMessage"
     for=".interfaces.IPost"
