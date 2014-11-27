@@ -14,7 +14,7 @@
 ############################################################################
 from __future__ import (absolute_import, division, unicode_literals)
 from zope.cachedescriptors.property import Lazy
-from Products.XWFMailingListManager import MessageQuery
+from .queries import MessageQuery
 
 
 class Post(object):
