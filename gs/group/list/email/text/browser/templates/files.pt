@@ -4,6 +4,6 @@
 ― <tal:block content="n"/> <tal:block condition="python:n==1">file</tal:block><tal:block
   condition="python:n!=1">files</tal:block> ―
 
-  <tal:block repeat="file view/files"><tal:block content="structure file/name"/>  (<tal:block content="structure file/size"/>)
-    <tal:block content="structure file/url"/>
+  <tal:block repeat="file view/files">□ <tal:block content="structure file/name"/>  (<tal:block content="structure file/size"/>)
+      <tal:block content="structure file/url"/>
 </tal:block></tal:block>
