@@ -152,7 +152,7 @@
     permission="zope2.Public" />
 
    <browser:viewlet
-    name="gs-group-list-email-text-prologue-files"
+    name="gs-group-list-email-text-appendix-files"
     for=".interfaces.IPost"
     manager=".interfaces.IAppendix"
     class=".files.Files"
@@ -162,7 +162,7 @@
     title="Files" />
 
    <browser:viewlet
-    name="gs-group-list-email-text-prologue-footer"
+    name="gs-group-list-email-text-appendix-footer"
     for=".interfaces.IPost"
     manager=".interfaces.IAppendix"
     class=".footer.Footer"
