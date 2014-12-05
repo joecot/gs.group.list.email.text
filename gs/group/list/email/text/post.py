@@ -29,7 +29,8 @@ class Post(object):
         if not postId:
             raise ValueError('Post identifier required')
         # FIXME: Sort out the context so it works
-        self.context = self.messages = self.__parent__ = messages
+        self.context = self.messages = self.__parent__ = self.aq_inner = \
+            messages
         self.groupInfo = groupInfo
         self.postId = self.__name__ = postId
 
