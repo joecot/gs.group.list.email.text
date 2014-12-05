@@ -21,7 +21,7 @@
     name="gs-group-list-email"
     for="Products.XWFMailingListManager.interfaces.IGSMessagesFolder"
     class=".message.MessageTraversal"
-    permission="zope2.View" />
+    permission="zope2.Public" />
   <class class=".message.MessageTraversal">
     <implements interface="zope.publisher.interfaces.IPublishTraverse"/>
   </class>
@@ -47,6 +47,18 @@
     template="browser/templates/simplemanager.pt"
     permission="zope2.View" />
 
+   <!--=mpj17=-->
+   <!-- For reasons best known to themselves, the permissions-->
+   <!-- on following viewlets have to be "zope2.Public" -->
+   <!-- (rather than "zope2.View"). The security is provided -->
+   <!-- by the page and viewlet manager above. -->
+   <!---->
+   <!-- I *suspect* the issue has something to do with the -->
+   <!-- permissions that the system has when adding an -->
+   <!-- email to the system (rather than posting from the -->
+   <!-- Web). The hack works. In the future I should look -->
+   <!-- elevating the permissions when listing an email. -->
+
   <!--========-->
   <!--Prologue-->
   <!--========-->
@@ -57,7 +69,7 @@
     manager=".interfaces.ITextMessage"
     class="gs.group.base.GroupViewlet"
     template="browser/templates/prologue.pt"
-    permission="zope2.View"
+    permission="zope2.Public"
     weight="10"
     title="Prologue" />
   <browser:viewletManager
@@ -66,7 +78,7 @@
     provides=".interfaces.IPrologue"
     class="gs.viewlet.manager.WeightOrderedViewletManager"
     template="browser/templates/simplemanager.pt"
-    permission="zope2.View" />
+    permission="zope2.Public" />
 
    <browser:viewlet
     name="gs-group-list-email-text-prologue-file"
@@ -74,7 +86,7 @@
     manager=".interfaces.IPrologue"
     class=".files.FileNotice"
     template="browser/templates/file-notice.pt"
-    permission="zope2.View"
+    permission="zope2.Public"
     weight="10"
     title="File notice" />
    <browser:viewlet
@@ -83,7 +95,7 @@
     manager=".interfaces.IPrologue"
     class=".files.FilesNotice"
     template="browser/templates/files-notice.pt"
-    permission="zope2.View"
+    permission="zope2.Public"
     weight="10"
     title="Files notice" />
 
@@ -97,7 +109,7 @@
     manager=".interfaces.ITextMessage"
     class="gs.group.base.GroupViewlet"
     template="browser/templates/body.pt"
-    permission="zope2.View"
+    permission="zope2.Public"
     weight="20"
     title="Body" />
   <browser:viewletManager
@@ -106,7 +118,7 @@
     provides=".interfaces.IBody"
     class="gs.viewlet.manager.WeightOrderedViewletManager"
     template="browser/templates/simplemanager.pt"
-    permission="zope2.View" />
+    permission="zope2.Public" />
 
    <browser:viewlet
     name="gs-group-list-email-text-body-plain"
@@ -114,7 +126,7 @@
     manager=".interfaces.IBody"
     class=".body.PlainBody"
     template="browser/templates/plain-body.pt"
-    permission="zope2.View"
+    permission="zope2.Public"
     weight="10"
     title="Plain body" />
 
@@ -128,7 +140,7 @@
     manager=".interfaces.ITextMessage"
     class="gs.group.base.GroupViewlet"
     template="browser/templates/appendix.pt"
-    permission="zope2.View"
+    permission="zope2.Public"
     weight="30"
     title="Appendix" />
   <browser:viewletManager
@@ -137,7 +149,7 @@
     provides=".interfaces.IAppendix"
     class="gs.viewlet.manager.WeightOrderedViewletManager"
     template="browser/templates/simplemanager.pt"
-    permission="zope2.View" />
+    permission="zope2.Public" />
 
    <browser:viewlet
     name="gs-group-list-email-text-prologue-files"
@@ -145,7 +157,7 @@
     manager=".interfaces.IAppendix"
     class=".files.Files"
     template="browser/templates/files.pt"
-    permission="zope2.View"
+    permission="zope2.Public"
     weight="10"
     title="Files" />
 
@@ -155,7 +167,7 @@
     manager=".interfaces.IAppendix"
     class=".footer.Footer"
     template="browser/templates/footer.pt"
-    permission="zope2.View"
+    permission="zope2.Public"
     weight="20"
     title="Footer" />
 
