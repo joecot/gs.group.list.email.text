@@ -1,4 +1,4 @@
 <tal:block
-  xmlns:tal="http://xml.zope.org/namespaces/tal">― There are <tal:block content="view/n">n</tal:block> files linked from the bottom of this message ―
+  xmlns:tal="http://xml.zope.org/namespaces/tal">― <tal:block content="view/n">n</tal:block> file links ―
 
 </tal:block>
