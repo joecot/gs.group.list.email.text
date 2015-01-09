@@ -1,8 +1,12 @@
 <tal:block
   xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  i18n:domain="gs.group.list.email.text"
   define="n view/n">
-― <tal:block content="n"/> <tal:block condition="python:n==1">file</tal:block><tal:block
-  condition="python:n!=1">files</tal:block> ―
+― <tal:block content="n"/> <tal:block condition="python:n==1"
+                                      i18n:translate="appendix-files-single">file</tal:block><tal:block
+  condition="python:n!=1"
+  i18n:translate="appendix-files-multiple">files</tal:block> ―
 
   <tal:block repeat="file view/files">□ <tal:block content="structure file/name"/>  (<tal:block content="structure file/size"/>)
       <tal:block content="structure file/url"/>
