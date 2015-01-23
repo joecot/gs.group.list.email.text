@@ -65,7 +65,7 @@ Key                 Type      Note
                 fm = self.files_metadata(row['post_id'])
             retval['files_metadata'] = fm
 
-        assert postId == retval['post_id'], 'post_id missmatch'
+        # assert postId == retval['post_id'], 'post_id missmatch'
         return retval
 
     def files_metadata(self, postId):
