@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ############################################################################
 #
-# Copyright © 2014 OnlineGroups.net and Contributors.
+# Copyright © 2014, 2015 OnlineGroups.net and Contributors.
 # All Rights Reserved.
 #
 # This software is subject to the provisions of the Zope Public License,
@@ -15,7 +15,7 @@
 from __future__ import absolute_import, unicode_literals
 from zope.component import getMultiAdapter
 from gs.content.email.base import (GroupEmail, TextMixin)
-from .post import Post
+from gs.group.list.email.base import Post
 
 
 class MessageTraversal(GroupEmail):

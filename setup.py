@@ -14,14 +14,22 @@
 ##############################################################################
 import codecs
 import os
-import sys
 from setuptools import setup, find_packages
 from version import get_version
 
+name = 'gs.group.list.email.text'
 version = get_version()
 
-requires = ['setuptools', 
-            'zope.viewlet']
+requires = [
+    'setuptools',
+    'zope.cachedescriptors',
+    'zope.component',
+    'zope.viewlet',
+    'gs.content.email.base',
+    'gs.group.base',
+    'gs.group.list.email.base',
+    'Products.GSGroup',
+]
 
 with codecs.open('README.rst', encoding='utf-8') as f:
     long_description = f.read()
@@ -29,7 +37,8 @@ with codecs.open(os.path.join("docs", "HISTORY.rst"),
                  encoding='utf-8') as f:
     long_description += '\n' + f.read()
 
-setup(name='gs.group.list.email.text',
+setup(
+    name=name,
     version=version,
     description="The text version of an email from a GroupServer group",
     long_description=long_description,
@@ -56,11 +65,11 @@ setup(name='gs.group.list.email.text',
     keywords='groupserver, message, post, email, list',
     author='Michael JasonSmith',
     author_email='mpj17@onlinegroups.net',
-    url='https://github.com/groupserver/gs.group.list.email.text/',
+    url='https://github.com/groupserver/{0}'.format(name),
     license='ZPL 2.1',
     packages=find_packages(exclude=['ez_setup']),
-    namespace_packages=['gs', 'gs.group', 'gs.group.list',
-                        'gs.group.list.email'],
+    namespace_packages=['.'.join(name.split('.')[:i])
+                        for i in range(1, len(name.split('.')))],
     include_package_data=True,
     zip_safe=False,
     install_requires=requires,
