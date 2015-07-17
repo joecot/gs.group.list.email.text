@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ############################################################################
 #
-# Copyright © 2014 OnlineGroups.net and Contributors.
+# Copyright © 2014, 2015 OnlineGroups.net and Contributors.
 # All Rights Reserved.
 #
 # This software is subject to the provisions of the Zope Public License,
@@ -12,7 +12,7 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ############################################################################
-from __future__ import absolute_import, unicode_literals
+from __future__ import absolute_import, unicode_literals, print_function
 from zope.cachedescriptors.property import Lazy
 from .viewlet import EmailMessageViewlet
 
@@ -23,7 +23,7 @@ class Footer(EmailMessageViewlet):
     def topicLink(self):
         'The link to the topic on the web'
         r = '{siteUrl}/r/topic/{postId}'
-        retval = r.format(siteUrl=self.context.groupInfo.siteInfo.url,
+        retval = r.format(siteUrl=self.siteInfo.url,
                           postId=self.context.postId)
         return retval
 

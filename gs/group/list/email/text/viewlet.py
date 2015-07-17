@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ############################################################################
 #
-# Copyright © 2014 OnlineGroups.net and Contributors.
+# Copyright © 2014, 2015 OnlineGroups.net and Contributors.
 # All Rights Reserved.
 #
 # This software is subject to the provisions of the Zope Public License,
@@ -12,7 +12,7 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ############################################################################
-from __future__ import absolute_import, unicode_literals
+from __future__ import absolute_import, unicode_literals, print_function
 from zope.cachedescriptors.property import Lazy
 from gs.group.base import GroupViewlet
 from Products.GSGroup.interfaces import (IGSMailingListInfo)
@@ -23,16 +23,6 @@ from Products.GSGroup.interfaces import (IGSMailingListInfo)
 # the site an group. This is a hack to get around that issue.
 
 class EmailMessageViewlet(GroupViewlet):
-
-    @Lazy
-    def groupInfo(self):
-        retval = self.context.groupInfo
-        return retval
-
-    @Lazy
-    def siteInfo(self):
-        retval = self.groupInfo.siteInfo
-        return retval
 
     @Lazy
     def listInfo(self):
