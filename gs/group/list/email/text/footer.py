@@ -14,7 +14,7 @@
 ############################################################################
 from __future__ import absolute_import, unicode_literals, print_function
 from zope.cachedescriptors.property import Lazy
-from .viewlet import EmailMessageViewlet
+from gs.group.list.email.base import EmailMessageViewlet
 
 
 class Footer(EmailMessageViewlet):
