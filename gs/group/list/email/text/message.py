@@ -13,6 +13,7 @@
 #
 ############################################################################
 from __future__ import absolute_import, unicode_literals
+from email.mime.text import MIMEText
 from gs.content.email.base import (GroupEmail, TextMixin)
 
 
@@ -31,4 +32,15 @@ is done by the viewlets.'''
     def __call__(self, *args, **kwargs):
         self.set_header('post-{0}.txt'.format(self.context.postId))
         retval = super(TextMessage, self).__call__(*args, **kwargs)
+        return retval
+
+    def as_email(self):
+        '''The message as an email-component
+
+:returns: An instance of the core email-message class containing the plain
+          text form of the post. The MIME-type of the message is
+          :mimetype:`text/plain`, and the encoding is UTF-8.
+:rtype: :class:`email.mime.text.MIMEText`'''
+        html = self()
+        retval = MIMEText(html, 'plain', 'utf-8')
         return retval
