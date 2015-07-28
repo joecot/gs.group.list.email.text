@@ -16,13 +16,25 @@
 
   <include package="zope.viewlet" file="meta.zcml" />
 
-  <!--The page itself-->
+  <!--The text-message as an page for an HTTP request-->
   <browser:page
     name="text"
     for="gs.group.list.email.base.interfaces.IPost"
     class=".message.TextMessage"
     template="browser/templates/page.pt"
     permission="zope2.View" />
+  <!--The text-message as a IMessagePart-->
+  <class class=".message.TextMessagePart">
+    <implements
+      interface="gs.group.list.email.base.interfaces.IMessagePart" />
+  </class>
+  <adapter
+    name="text"
+    for="gs.group.list.email.base.interfaces.IPost
+         zope.publisher.interfaces.browser.IBrowserRequest"
+    provides="gs.group.list.email.base.interfaces.IMessagePart"
+    factory=".message.TextMessagePart" />
+
   <!--The viewlet manager inside the page-->
    <browser:viewletManager
     name="groupserver.EmailTextMessage"
