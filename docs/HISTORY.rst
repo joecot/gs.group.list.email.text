@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.0.0 (2015-07-dd)
+2.0.0 (2015-09-08)
 ------------------
 
 * Moving the base-code to `gs.group.list.email.base`_
