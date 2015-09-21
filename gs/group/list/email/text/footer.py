@@ -32,5 +32,5 @@ class Footer(EmailMessageViewlet):
         '''The leave link. Some cut-n-paste software engineering from
 ``gs.group.list.sender.headers.simpleadd.ListUnsubscribe``'''
         emailAddr = self.listInfo.get_property('mailto')
-        retval = 'mailto:{0}?Subject=Unsubscribe'.format(emailAddr)
+        retval = 'mailto:{0}?subject=Unsubscribe'.format(emailAddr)
         return retval
