@@ -13,6 +13,7 @@
 #
 ##############################################################################
 from __future__ import absolute_import, unicode_literals, print_function, division
+from base64 import b64encode
 from email.mime.text import MIMEText
 from mock import patch
 from unittest import TestCase
@@ -32,3 +33,5 @@ class TextMessagePartTest(TestCase):
 
         self.assertIsInstance(r, MIMEText)
         self.assertIn('text/plain', r['Content-type'])
+        expected = b64encode(self.text()) + '\n'
+        self.assertEqual(expected, r.get_payload())
