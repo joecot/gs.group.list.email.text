@@ -33,7 +33,7 @@ requires = [
 
 with codecs.open('README.rst', encoding='utf-8') as f:
     long_description = f.read()
-with codecs.open(os.path.join("docs", "HISTORY.rst"), 
+with codecs.open(os.path.join("docs", "HISTORY.rst"),
                  encoding='utf-8') as f:
     long_description += '\n' + f.read()
 
@@ -61,7 +61,7 @@ setup(
         'Topic :: Communications :: Email :: Mailing List Servers',
         'Topic :: Communications :: Email :: Mail Transport Agents',
         "Topic :: Software Development :: Libraries :: Python Modules",
-      ],
+    ],
     keywords='groupserver, message, post, email, list',
     author='Michael JasonSmith',
     author_email='mpj17@onlinegroups.net',
@@ -73,5 +73,7 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=requires,
+    test_suite="{0}.tests.test_all".format(name),
+    tests_require=['mock', ],
     extras_require={'docs': ['Sphinx'], },
 )
