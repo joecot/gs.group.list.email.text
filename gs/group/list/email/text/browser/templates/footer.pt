@@ -2,9 +2,17 @@
   xmlns:tal="http://xml.zope.org/namespaces/tal"
   xmlns:i18n="http://xml.zope.org/namespaces/i18n"
   i18n:domain="gs.group.list.email.text">
-――
+_______________________________________________
 <tal:block
-  i18n:translate="appendix-footer-topic">View topic <tal:block i18n:name="topicLink" replace="view/topicLink">http://groups.example.com/r/topic/2wzK5sNxM52OPbGlwSrH82</tal:block></tal:block>
+  i18n:translate="appendix-footer-address">Email group at <tal:block i18n:name="emailAddress" replace="view/groupEmail">group@groups.example.com</tal:block></tal:block>
 <tal:block
-  i18n:translate="appendix-footer-leave">Leave group <tal:block i18n:name="leaveLink" replace="view/leaveLink">mailto:group@groups.example.com?Subject=unsubscribe</tal:block></tal:block>
+  i18n:translate="appendix-footer-topic">View topic: <tal:block i18n:name="topicLink" replace="view/topicLink">http://groups.example.com/r/topic/2wzK5sNxM52OPbGlwSrH82</tal:block></tal:block>
+<tal:block
+  i18n:translate="appendix-footer-group">View group "<tal:block i18n:name="groupName" replace="view/groupName">Example Group</tal:block>": <tal:block i18n:name="groupLink" replace="view/groupLink">http://groups.example.com/groups/examplegroup</tal:block></tal:block>
+<tal:block
+  i18n:translate="appendix-footer-leave-link">Unsubscribe: <tal:block i18n:name="leaveLink" replace="view/leaveLink">http://groups.example.com/groups/leave.html?groupId=examplegroup</tal:block></tal:block>
+<tal:block
+  i18n:translate="appendix-footer-leave-email">Or to unsubscribe email <tal:block i18n:name="leaveEmail" replace="view/groupEmail">group@groups.example.com</tal:block> with subject "Unsubscribe"</tal:block>
+<tal:block
+  i18n:translate="appendix-footer-policies">List policies: <tal:block i18n:name="policyLink" replace="view/policyLink">http://groups.example.com/policies</tal:block></tal:block>
 </tal:block>

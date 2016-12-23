@@ -29,8 +29,34 @@ class Footer(EmailMessageViewlet):
 
     @Lazy
     def leaveLink(self):
-        '''The leave link. Some cut-n-paste software engineering from
-``gs.group.list.sender.headers.simpleadd.ListUnsubscribe``'''
+        'The link to unsubscribe on the web'
+        r = '{siteUrl}/groups/leave.html?groupId={groupId}'
+        retval = r.format(siteUrl=self.siteInfo.url,
+                          groupId=self.groupInfo.id)
+        return retval
+
+    @Lazy
+    def groupName(self):
+        'Group name'
+        retval = self.groupInfo.name;
+        return retval
+
+    @Lazy
+    def groupEmail(self):
+        '''The group email address'''
         emailAddr = self.listInfo.get_property('mailto')
-        retval = 'mailto:{0}?subject=Unsubscribe'.format(emailAddr)
+        retval = emailAddr
+        return retval
+
+    @Lazy
+    def groupLink(self):
+        'The link to the group on the web'
+        retval = self.groupInfo.url;
+        return retval
+
+    @Lazy
+    def policyLink(self):
+        'The link to the policies on the web'
+        r = '{siteUrl}/policies'
+        retval = r.format(siteUrl=self.siteInfo.url)
         return retval
